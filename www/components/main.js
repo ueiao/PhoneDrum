@@ -9,7 +9,7 @@
     //
     function onDeviceReady() {
         startWatch();
-        se.media = new Media (getPath() + se.srcFile , se.onSuccess, onError);
+        se.media = new Media (getPath() + se.srcFile , se.onSuccess, se.onError);
     }
 
     // Start watching the acceleration
@@ -42,6 +42,7 @@
         // if shaking then sounds
         if(isShaked(acceleration.x,acceleration.y,acceleration.z)){
             //console.log('Shaked');
+            se.playSound();
         }
     }
 
@@ -69,7 +70,7 @@
         _beforeAcceleration.y = y;
         _beforeAcceleration.z = z;
         
-        return 4.0 < d;
+        return 4.0 < da - db;
     }
     // getPath: get current path
     //
@@ -77,5 +78,5 @@
             var str = location.pathname;
             var i = str.lastIndexOf('/');
             return str.substring(0,i+1);
-        }
+    }
     
